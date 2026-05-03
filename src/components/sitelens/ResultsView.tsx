@@ -59,7 +59,36 @@ export function ResultsView({ scan, onSave, isSaved, isScanning }: Props) {
   const scoreColor =
     scan.score >= 80 ? "text-success" : scan.score >= 50 ? "text-warning" : "text-destructive";
 
+  const high = scan.issues.filter((i) => i.severity === "high").length;
+  const med = scan.issues.filter((i) => i.severity === "medium").length;
+  const low = scan.issues.filter((i) => i.severity === "low").length;
+  const status =
+    scan.issues.length === 0
+      ? { label: "Clean", color: "text-success bg-success/10 border-success/30" }
+      : high > 0
+      ? { label: "Needs attention", color: "text-destructive bg-destructive/10 border-destructive/30" }
+      : { label: "Minor issues", color: "text-warning bg-warning/10 border-warning/30" };
+  const duration =
+    scan.durationMs < 1000 ? `${scan.durationMs} ms` : `${(scan.durationMs / 1000).toFixed(2)} s`;
+
   return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground px-1">
+        <span
+          className={`inline-flex items-center rounded border px-1.5 py-0.5 font-medium uppercase tracking-wide ${status.color}`}
+        >
+          {status.label}
+        </span>
+        <span>
+          Scanned in <span className="font-mono text-foreground/80">{duration}</span>
+        </span>
+        <span aria-hidden>·</span>
+        <span>
+          <span className="text-destructive">{high} high</span>,{" "}
+          <span className="text-warning">{med} medium</span>,{" "}
+          <span className="text-info">{low} low</span>
+        </span>
+      </div>
     <div className="rounded-lg border border-border bg-surface">
       <div className="flex items-start justify-between gap-4 border-b border-border p-4">
         <div className="min-w-0">
