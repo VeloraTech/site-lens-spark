@@ -140,5 +140,6 @@ export function ResultsView({ scan, onSave, isSaved, isScanning }: Props) {
         <AiBuilderCta />
       </div>
     </div>
+    </div>
   );
 }
