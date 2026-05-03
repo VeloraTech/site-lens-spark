@@ -65,10 +65,16 @@ export function ScanForm({ onScan, isScanning, onCancel }: Props) {
           onKeyDown={(e) => e.key === "Enter" && canScan && submit()}
           className="font-mono text-sm bg-background border-border"
         />
-        <Button onClick={submit} disabled={!canScan}>
-          {isScanning && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
-          {isScanning ? "Scanning…" : "Scan"}
-        </Button>
+        {isScanning ? (
+          <Button variant="outline" onClick={onCancel}>
+            <X className="h-3.5 w-3.5" />
+            Cancel
+          </Button>
+        ) : (
+          <Button onClick={submit} disabled={!canScan}>
+            Scan
+          </Button>
+        )}
       </div>
 
       <Tabs defaultValue="upload" className="w-full">
