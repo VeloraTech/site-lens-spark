@@ -65,6 +65,7 @@ export function ScanForm({ onScan, isScanning }: Props) {
           className="font-mono text-sm bg-background border-border"
         />
         <Button onClick={submit} disabled={!canScan}>
+          {isScanning && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
           {isScanning ? "Scanning…" : "Scan"}
         </Button>
       </div>
