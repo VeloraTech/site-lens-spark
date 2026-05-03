@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Upload, Link2, FileCode, X, Loader2 } from "lucide-react";
+import { Upload, Link2, FileCode, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,9 +8,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 interface Props {
   onScan: (input: { kind: "url" | "html" | "file"; source: string; html?: string }) => void;
   isScanning: boolean;
+  onCancel: () => void;
 }
 
-export function ScanForm({ onScan, isScanning }: Props) {
+export function ScanForm({ onScan, isScanning, onCancel }: Props) {
   const [url, setUrl] = useState("");
   const [pasted, setPasted] = useState("");
   const [file, setFile] = useState<{ name: string; content: string } | null>(null);
@@ -64,10 +65,16 @@ export function ScanForm({ onScan, isScanning }: Props) {
           onKeyDown={(e) => e.key === "Enter" && canScan && submit()}
           className="font-mono text-sm bg-background border-border"
         />
-        <Button onClick={submit} disabled={!canScan}>
-          {isScanning && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
-          {isScanning ? "Scanning…" : "Scan"}
-        </Button>
+        {isScanning ? (
+          <Button variant="outline" onClick={onCancel}>
+            <X className="h-3.5 w-3.5" />
+            Cancel
+          </Button>
+        ) : (
+          <Button onClick={submit} disabled={!canScan}>
+            Scan
+          </Button>
+        )}
       </div>
 
       <Tabs defaultValue="upload" className="w-full">

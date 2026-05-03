@@ -19,4 +19,5 @@ export interface ScanResult {
   createdAt: number;
   issues: Issue[];
   score: number;         // 0–100
+  durationMs: number;
 }

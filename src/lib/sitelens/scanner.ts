@@ -8,6 +8,7 @@ const uid = () => `${Date.now().toString(36)}-${(counter++).toString(36)}`;
  * No network required — true to SiteLens' offline-first philosophy.
  */
 export function scanHtml(html: string, source: string, kind: ScanResult["kind"]): ScanResult {
+  const startedAt = performance.now();
   const issues: Issue[] = [];
   const doc = new DOMParser().parseFromString(html, "text/html");
 
@@ -210,6 +211,7 @@ export function scanHtml(html: string, source: string, kind: ScanResult["kind"])
     createdAt: Date.now(),
     issues,
     score,
+    durationMs: Math.max(1, Math.round(performance.now() - startedAt)),
   };
 }
 
