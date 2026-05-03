@@ -8,9 +8,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 interface Props {
   onScan: (input: { kind: "url" | "html" | "file"; source: string; html?: string }) => void;
   isScanning: boolean;
+  onCancel: () => void;
 }
 
-export function ScanForm({ onScan, isScanning }: Props) {
+export function ScanForm({ onScan, isScanning, onCancel }: Props) {
   const [url, setUrl] = useState("");
   const [pasted, setPasted] = useState("");
   const [file, setFile] = useState<{ name: string; content: string } | null>(null);
