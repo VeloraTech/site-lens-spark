@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Upload, Link2, FileCode, X } from "lucide-react";
+import { Upload, Link2, FileCode, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -41,11 +41,15 @@ export function ScanForm({ onScan, isScanning }: Props) {
   const submit = () => {
     if (file) {
       onScan({ kind: "file", source: file.name, html: file.content });
+      setFile(null);
     } else if (pasted.trim()) {
       onScan({ kind: "html", source: "Pasted HTML", html: pasted });
+      setPasted("");
     } else if (url.trim()) {
       onScan({ kind: "url", source: url.trim() });
+      setUrl("");
     }
+    if (fileInput.current) fileInput.current.value = "";
   };
 
   const canScan = !isScanning && (file || url.trim() || pasted.trim());
@@ -61,6 +65,7 @@ export function ScanForm({ onScan, isScanning }: Props) {
           className="font-mono text-sm bg-background border-border"
         />
         <Button onClick={submit} disabled={!canScan}>
+          {isScanning && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
           {isScanning ? "Scanning…" : "Scan"}
         </Button>
       </div>

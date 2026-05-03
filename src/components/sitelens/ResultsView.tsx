@@ -1,5 +1,6 @@
-import { Bookmark, Globe, FileCode, Upload } from "lucide-react";
+import { Bookmark, Globe, FileCode, Upload, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { ScanResult, IssueCategory } from "@/lib/sitelens/types";
 import { IssueCard, AiBuilderCta } from "./IssueCard";
 
@@ -15,9 +16,27 @@ interface Props {
   scan: ScanResult | null;
   onSave: (s: ScanResult) => void;
   isSaved: boolean;
+  isScanning: boolean;
 }
 
-export function ResultsView({ scan, onSave, isSaved }: Props) {
+export function ResultsView({ scan, onSave, isSaved, isScanning }: Props) {
+  if (isScanning) {
+    return (
+      <div className="rounded-lg border border-border bg-surface p-6 space-y-4">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
+          Running local scan…
+        </div>
+        <Skeleton className="h-8 w-24" />
+        <div className="space-y-2">
+          <Skeleton className="h-14 w-full" />
+          <Skeleton className="h-14 w-full" />
+          <Skeleton className="h-14 w-full" />
+        </div>
+      </div>
+    );
+  }
+
   if (!scan) {
     return (
       <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed border-border bg-surface/40 p-12 text-center">

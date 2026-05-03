@@ -57,7 +57,7 @@ function Index() {
 
             <ScanForm onScan={runScan} isScanning={scanning} />
 
-            <ResultsView scan={active} onSave={saveScan} isSaved={isSaved} />
+            <ResultsView scan={active} onSave={saveScan} isSaved={isSaved} isScanning={scanning} />
           </div>
         </main>
 
