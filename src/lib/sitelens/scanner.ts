@@ -211,6 +211,7 @@ export function scanHtml(html: string, source: string, kind: ScanResult["kind"])
     createdAt: Date.now(),
     issues,
     score,
+    durationMs: Math.max(1, Math.round(performance.now() - startedAt)),
   };
 }
 
