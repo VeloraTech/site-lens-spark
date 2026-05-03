@@ -41,11 +41,15 @@ export function ScanForm({ onScan, isScanning }: Props) {
   const submit = () => {
     if (file) {
       onScan({ kind: "file", source: file.name, html: file.content });
+      setFile(null);
     } else if (pasted.trim()) {
       onScan({ kind: "html", source: "Pasted HTML", html: pasted });
+      setPasted("");
     } else if (url.trim()) {
       onScan({ kind: "url", source: url.trim() });
+      setUrl("");
     }
+    if (fileInput.current) fileInput.current.value = "";
   };
 
   const canScan = !isScanning && (file || url.trim() || pasted.trim());
