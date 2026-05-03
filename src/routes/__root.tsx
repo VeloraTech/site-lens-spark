@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 
@@ -29,11 +30,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "SiteLens — Local Pre-Deployment Site Checker" },
+      { name: "description", content: "SiteLens is a local-first, offline-first developer tool for catching accessibility, UX, CSS and structural issues before you ship." },
+      { name: "author", content: "SiteLens" },
+      { property: "og:title", content: "SiteLens — Local Pre-Deployment Site Checker" },
+      { property: "og:description", content: "Catch accessibility, UX and structural issues before deploy. Local-first, offline-first, developer-first." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -56,8 +57,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="dark">
         {children}
+        <Toaster theme="dark" position="bottom-right" />
         <Scripts />
       </body>
     </html>
