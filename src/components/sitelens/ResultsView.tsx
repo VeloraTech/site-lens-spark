@@ -89,7 +89,7 @@ export function ResultsView({ scan, onSave, isSaved, isScanning }: Props) {
           <span className="text-info">{low} low</span>
         </span>
       </div>
-    <div className="rounded-lg border border-border bg-surface">
+      <div className="rounded-lg border border-border bg-surface">
       <div className="flex items-start justify-between gap-4 border-b border-border p-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
