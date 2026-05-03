@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { toast } from "sonner";
 import { AppHeader } from "@/components/sitelens/AppHeader";
 import { ScanForm } from "@/components/sitelens/ScanForm";
 import { ResultsView } from "@/components/sitelens/ResultsView";
@@ -26,11 +27,23 @@ function Index() {
 
   const [active, setActive] = useState<ScanResult | null>(null);
   const [scanning, setScanning] = useState(false);
+  const cancelRef = useRef(false);
+  const timerRef = useRef<number | null>(null);
+
+  const cancelScan = () => {
+    cancelRef.current = true;
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    setScanning(false);
+    toast("Scan cancelled");
+  };
 
   const runScan = async (input: { kind: "url" | "html" | "file"; source: string; html?: string }) => {
+    cancelRef.current = false;
     setScanning(true);
-    // brief delay so the scanning state is visible
-    await new Promise((r) => setTimeout(r, 250));
+    await new Promise<void>((resolve) => {
+      timerRef.current = window.setTimeout(() => resolve(), 350);
+    });
+    if (cancelRef.current) return;
     const html = input.html ?? syntheticHtmlFromUrl(input.source);
     const result = scanHtml(html, input.source, input.kind);
     addRecent(result);
