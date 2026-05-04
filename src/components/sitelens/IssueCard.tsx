@@ -130,7 +130,7 @@ export function IssueCard({ issue }: { issue: Issue }) {
 
 export function AiBuilderCta() {
   return (
-    <div className="mt-6 rounded-md border border-border bg-surface p-4 flex items-center justify-between gap-4">
+    <div className="mt-6 rounded-md border border-border bg-surface p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
       <div>
         <div className="text-sm font-medium text-foreground">Need to act on these?</div>
         <p className="text-xs text-muted-foreground mt-0.5">
