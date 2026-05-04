@@ -29,7 +29,7 @@ export function ScanSidebar({
   const list = tab === "recent" ? recent : saved;
 
   return (
-    <aside className="w-72 shrink-0 border-l border-border bg-sidebar flex flex-col">
+    <aside className="w-full lg:w-72 h-full shrink-0 border-l border-border bg-sidebar flex flex-col">
       <div className="flex border-b border-border">
         {(["recent", "saved"] as const).map((t) => (
           <button
