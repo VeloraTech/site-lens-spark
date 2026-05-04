@@ -34,10 +34,14 @@ export const Route = createRootRoute({
       { name: "description", content: "SiteLens is a local-first, offline-first developer tool for catching accessibility, UX, CSS and structural issues before you ship." },
       { name: "author", content: "SiteLens" },
       { property: "og:title", content: "SiteLens — Local Pre-Deployment Site Checker" },
-      { property: "og:description", content: "Catch accessibility, UX and structural issues before deploy. Local-first, offline-first, developer-first." },
+      { property: "og:description", content: "SiteLens is a local-first, offline-first developer tool for catching accessibility, UX, CSS and structural issues before you ship." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "SiteLens — Local Pre-Deployment Site Checker" },
+      { name: "twitter:description", content: "SiteLens is a local-first, offline-first developer tool for catching accessibility, UX, CSS and structural issues before you ship." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93944dc4-6fd4-4a14-8b84-3415d60d3d52/id-preview-9afc7614--dac76ec5-742d-4eae-95a2-c426ae45987c.lovable.app-1777781232040.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93944dc4-6fd4-4a14-8b84-3415d60d3d52/id-preview-9afc7614--dac76ec5-742d-4eae-95a2-c426ae45987c.lovable.app-1777781232040.png" },
     ],
     links: [
       {
