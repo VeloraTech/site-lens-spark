@@ -2,6 +2,7 @@
 
 > A local-first, offline-first pre-deployment website checker for developers.
 
+
 SiteLens analyzes HTML for **accessibility**, **structural**, **UX**, **CSS**, and **visual** issues — entirely in your browser. No accounts, no backend, no telemetry. Optional AI insights are available as an opt-in upgrade layer, never forced.
 
 ---
